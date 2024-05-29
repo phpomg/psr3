@@ -1,0 +1,14 @@
+{
+    "name": "phpomg/psr3",
+    "description": "psr3 logger实现~",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "PHPOMG\\Psr3\\": "src/"
+        }
+    },
+    "require": {
+        "psr/log": "^3.0"
+    }
+}
