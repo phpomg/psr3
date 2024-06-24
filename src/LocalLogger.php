@@ -4,25 +4,16 @@ declare(strict_types=1);
 
 namespace PHPOMG\Psr3;
 
-use Composer\InstalledVersions;
 use Exception;
 use Psr\Log\AbstractLogger;
-use ReflectionClass;
 use Stringable;
 
 class LocalLogger extends AbstractLogger
 {
     private $log_path;
 
-    public function __construct(string $log_path = null)
+    public function __construct(string $log_path)
     {
-        if (is_null($log_path)) {
-            if (class_exists(InstalledVersions::class)) {
-                $log_path = dirname(dirname(dirname((new ReflectionClass(InstalledVersions::class))->getFileName()))) . '/runtime/log/';
-            } else {
-                $log_path = __DIR__ . '/runtime/log/';
-            }
-        }
         if (!is_dir($log_path)) {
             if (false === mkdir($log_path, 0755, true)) {
                 throw new Exception('mkdir [' . $log_path . '] failure!');
